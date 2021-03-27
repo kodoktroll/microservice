@@ -1,0 +1,7 @@
+.idea
+build
+node_modules
+dist
+accounts/account.db
+outlets/outlet.db
+products/product.db

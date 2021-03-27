@@ -1,0 +1,33 @@
+version: '3'
+services:
+  account:
+    build: 
+      context: accounts
+    ports:
+      - "9000:9000"
+    depends_on:
+      - outlet
+      - product
+
+  outlet:
+    build:
+      context: outlets
+    ports:
+      - "9001:9001"
+
+  product:
+    build:
+      context: products
+    ports:
+      - "9002:9002"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - account
+      - outlet
+      - product
